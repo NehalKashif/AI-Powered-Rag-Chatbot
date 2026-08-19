@@ -1,64 +1,90 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function FaceLogin() {
+
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   const [cameraStarted, setCameraStarted] = useState(false);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
-
   const startCamera = async () => {
+
     try {
+
       setError("");
 
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: true
       });
 
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
+      videoRef.current.srcObject = stream;
 
       setCameraStarted(true);
+
     } catch (err) {
+
       console.error(err);
 
       setError(
-        "Camera permission was denied or the camera is unavailable."
+        "Camera permission is required for face login."
       );
+
     }
   };
 
-  const captureFace = () => {
-    console.log("Face captured");
 
-    // We will connect this to the backend later.
+  const verifyFace = () => {
+
+    /*
+      Face recognition will be connected here later.
+
+      Later:
+
+      1. Capture the user's face
+      2. Send it to the backend
+      3. Backend compares the face with MongoDB data
+      4. Backend returns authentication result
+      5. If successful, navigate to /chat
+    */
+
+    console.log("Face verification requested");
+
+    // Temporary navigation for frontend testing
     navigate("/chat");
   };
 
+
   return (
+
     <div className="auth-page">
+
       <div className="auth-card face-card">
 
         <div className="logo">
           RAG<span>CHAT</span>
         </div>
 
+
         <h1>Face Login</h1>
 
+
         <p className="subtitle">
-          Look directly at the camera to continue
+          Look directly at the camera to login
         </p>
+
 
         <div className="camera-container">
 
           {!cameraStarted && (
+
             <div className="camera-placeholder">
               📷
             </div>
+
           )}
+
 
           <video
             ref={videoRef}
@@ -69,37 +95,50 @@ function FaceLogin() {
 
         </div>
 
+
         {error && (
+
           <p className="camera-error">
             {error}
           </p>
+
         )}
 
+
         {!cameraStarted ? (
+
           <button
+            type="button"
             className="auth-button"
             onClick={startCamera}
           >
             Start Camera
           </button>
+
         ) : (
+
           <button
+            type="button"
             className="auth-button"
-            onClick={captureFace}
+            onClick={verifyFace}
           >
             Verify Face
           </button>
+
         )}
+
 
         <Link
           to="/login"
           className="back-link"
         >
-          ← Login with email instead
+          ← Login with Email
         </Link>
 
       </div>
+
     </div>
+
   );
 }
 

@@ -90,7 +90,7 @@ function Login() {
         <button
           type="button"
           className="face-login-button"
-          onClick={handleFaceLogin}
+          onClick={() => navigate("/face-login")}
         >
           📷 Login with Face
         </button>
