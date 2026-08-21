@@ -1,0 +1,34 @@
+Box-Muller takes two random numbers between 0 and 1 and turns them into random numbers that follow a bell-shaped Gaussian distribution.    standard normal random number
+
+LCG stands for Linear Congruential Generator. It is a simple mathematical method used to generate pseudo-random numbers.
+
+new = (a × old + c) % m
+a = multiplier
+c = increment
+m = modulus
+
+
+mean
+ ↓
+Where should the distribution be centered?
+
+standard deviation
+ ↓
+How wide/spread should the distribution be?
+
+z
+ ↓
+How far from the center should this particular number be?
+
+
+
+rag chatbot
+Login through Face Recognization
+text to speech, speech to text
+Caling weather
+
+!Khan271!
+
+GPT 
+andrejlarpathi
+Sechspare dataset
